@@ -1,6 +1,6 @@
 pipeline {
      environment {
-       ID_DOCKER = "nicolasham"
+       ID_DOCKER = "choco1992"
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
        STAGING = "${ID_DOCKER}-staging"
@@ -51,6 +51,9 @@ pipeline {
 
      stage ('Login and Push Image on docker hub') {
           agent any
+          environment {
+            DOCKERHUB_PASSWORD = credentials('dockerhub_text')
+          }  
           steps {
              script {
                sh '''
